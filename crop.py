@@ -1,6 +1,6 @@
 from PIL import Image
 
-def crop_to_square_center(image_path, output_path, size=2600):
+def crop_to_square_center(image_path, output_path, size=3200):
     """
     Обрезает изображение до квадрата от центра
     
@@ -44,9 +44,9 @@ def crop_to_square_center(image_path, output_path, size=2600):
     
     # Сохраняем результат
     cropped_img.save(output_path)
-    print(f"Изображение сохранено: {output_path}")
-    print(f"Исходный размер: {width}x{height}")
-    print(f"Новый размер: {cropped_img.size[0]}x{cropped_img.size[1]}")
+    #print(f"Изображение сохранено: {output_path}")
+    #print(f"Исходный размер: {width}x{height}")
+    #print(f"Новый размер: {cropped_img.size[0]}x{cropped_img.size[1]}")
     return True
 
 def resize_to_exact(image_path, output_path, width, height):
@@ -67,8 +67,8 @@ def resize_to_exact(image_path, output_path, width, height):
     
     # Сохраняем результат
     resized_img.save(output_path, quality=95)
-    print(f"Изменено: {img.size} -> {resized_img.size}")
-    print(f"Сохранено в: {output_path}")
+    #print(f"Изменено: {img.size} -> {resized_img.size}")
+    #print(f"Сохранено в: {output_path}")
     return True
 
 
