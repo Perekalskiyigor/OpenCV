@@ -128,7 +128,7 @@ import numpy as np
 
 def main(erosion_size):
 
-    IMAGE_PATH = 'resize_daheng_snapshot.jpg'
+    IMAGE_PATH = 'daheng_snapshot_circle.png'
 
     # -------------------------
     # НАСТРОЙКИ
