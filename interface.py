@@ -2,8 +2,10 @@ import tkinter as tk
 from PIL import Image, ImageTk
 import main
 import os
+import time
 
 res = (0)
+itogo = "..."
 
 def load_and_display_image():
     """Функция для загрузки и отображения изображения"""
@@ -24,15 +26,26 @@ def load_and_display_image():
         label_image.config(text=f"Ошибка: {e}", image="")
         return False
 
+def process_loop():
+    global res
+    if res[1] > 0:
+        res = main.start()
+        load_and_display_image()
+        root.after(500, process_loop)  # Через 1 секунду вызвать снова
+        itogo = "..."
+        label_output.config(text=str(itogo))
+    else:
+        itogo = res[0]
+        label_output.config(text=str(itogo))
+
 def pusk_f():
     global res
-    res = main.main()  # выполнение основной программы (может создать/обновить изображение)
-    
-    if res is not None:
-        label_output.config(text=str(res))
-    
-    # Загружаем и отображаем изображение после выполнения main
+    global itogo
+    res = main.start()
     load_and_display_image()
+    process_loop()
+
+        
 
 # Создаём главное окно
 root = tk.Tk()
@@ -45,7 +58,7 @@ label_image = tk.Label(root, text="Нажмите 'Пуск' для загруз
 label_image.pack(pady=10, fill=tk.BOTH, expand=True)
 
 # Метка для вывода числа
-label_output = tk.Label(root, text=str(res), font=("Arial", 48), 
+label_output = tk.Label(root, text=str(itogo), font=("Arial", 48), 
                         width=10, height=2, relief="sunken")
 label_output.pack(pady=20)
 
@@ -53,6 +66,7 @@ label_output.pack(pady=20)
 button_start = tk.Button(root, text="Пуск", command=pusk_f, 
                         font=("Arial", 14), width=10, bg="green", fg="white")
 button_start.pack(pady=10)
+
 
 # Запуск основного цикла
 root.mainloop()

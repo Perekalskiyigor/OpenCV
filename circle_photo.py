@@ -14,7 +14,7 @@ def take_photo():
     img = Image.open(input_path).convert('RGBA')
 
     # Параметры круга
-    diameter = 3000
+    diameter = 2900
     width, height = img.size
     center_x, center_y = width // 2, height // 2
 
